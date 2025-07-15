@@ -1,2 +1,2 @@
-run:
-	node src/index.js
+dev:
+	npm run dev
