@@ -1,0 +1,14 @@
+extends ../layouts/page.pug
+
+block content
+    if users.length === 0
+      p No one here
+    else
+      table
+        tbody
+        each user in users
+          tr
+            td 
+              a(href=`/users/${user.id}`)= user.username
+            td= user.email
+
