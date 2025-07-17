@@ -3,6 +3,7 @@ import fastify from 'fastify'
 import fastifyStatic from '@fastify/static'
 import view from '@fastify/view'
 import pug from 'pug'
+import sanitize from 'sanitize-html'
 
 import { fileURLToPath } from 'url'
 import path from 'path'
@@ -65,18 +66,27 @@ app.get('/users', (_req, res) => {
 })
 
 app.get('/users/:id', (req, res) => {
-  const { users } = state
-
-  const { id } = req.params
-
-  const user = users.find(u => u.id === id)
-
-  if (!user) {
-    res.code(404).send('User not found')
-  }
-
-  res.view(`src/views/users/show/`, user)
+  // const escapedId = sanitize(req.params.id)
+  const dangerHtml = req.params.id
+  res.type('html')
+  // res.send(`<h1>${escapedId}</h1>`)
+  // res.send(`<h1>${dangerHtml}</h1>`)
+  res.view('src/views/users/attack', { dangerHtml })
 })
+
+// app.get('/users/:id', (req, res) => {
+//   const { users } = state
+
+//   const { id } = req.params
+
+//   const user = users.find(u => u.id === id)
+
+//   if (!user) {
+//     res.code(404).send('User not found')
+//   }
+
+//   res.view(`src/views/users/show/`, user)
+// })
 
 app.get('/users/:id/posts/:postId', (req, res) => {
   res.send(`User Id: ${req.params.id}; Post Id: ${req.params.postId}`)
