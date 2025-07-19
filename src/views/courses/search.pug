@@ -1,0 +1,10 @@
+
+block search
+  form(role = 'form' method = 'GET' action = '/courses')
+    input(type = 'search', name = 'term', value = term)
+    input(type = 'submit' value = 'search')
+
+  each c in courses
+    div
+      h5= c.title
+      p= c.description
