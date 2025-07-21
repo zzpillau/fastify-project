@@ -1,0 +1,33 @@
+[
+  {
+    "id": "1",
+    "username": "Tanya",
+    "email": "Tyreek.Muller@yahoo.com"
+  },
+  {
+    "id": "2",
+    "username": "Sasha",
+    "email": "Kayden_Walsh35@yahoo.com"
+  },
+  {
+    "id": "3",
+    "username": "Kitty",
+    "email": "Desmond.Schoen73@yahoo.com"
+  },
+  {
+    "id": "4",
+    "username": "Goose",
+    "email": "Newell_Stokes90@hotmail.com"
+  },
+  {
+    "id": "5",
+    "username": "Chicken",
+    "email": "Hannah.Davis84@yahoo.com"
+  },
+  {
+    "id": "user_1",
+    "username": "Зайка Репозиторная",
+    "email": "zz@zz.com",
+    "password": "11111"
+  }
+]
