@@ -1,0 +1,12 @@
+extends ../layouts/page.pug
+
+block content
+  .container-4
+    form(action='/courses', method='post')
+      div.form-group.mt-3
+        label Название:
+        input.form-control(type = 'text', name = 'title')
+      div.form-group.mt-3
+        label Описание:
+        input.form-control(type = 'text', name = 'description')
+      input.btn.btn-primary.mt-4(type = 'submit', value = 'Добавить курс')

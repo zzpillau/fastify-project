@@ -4,6 +4,9 @@ import fastifyStatic from '@fastify/static'
 import view from '@fastify/view'
 import pug from 'pug'
 // import sanitize from 'sanitize-html'
+import formbody from '@fastify/formbody'
+import uniqueId from 'lodash.uniqueid';
+
 
 import { fileURLToPath } from 'url'
 import path from 'path'
@@ -90,6 +93,8 @@ const port = 3000
 
 await app.register(view, { engine: { pug } })
 
+await app.register(formbody)
+
 app.register(fastifyStatic, {
   root: path.join(__dirname, '../node_modules/bootstrap/dist/css'),
   prefix: '/assets/',
@@ -102,7 +107,7 @@ app.listen({ port }, () => {
 // Обработчики
 
 // главная - PUG
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
   res.view('src/views/index')
 })
 
@@ -130,30 +135,64 @@ app.get('/users/:id', (req, res) => {
   res.view(`src/views/users/show/`, user)
 })
 
+// добавить нового Юзера
+// форма
+app.get('/users/new', (_req, res) => {
+  res.view('src/views/users/new')
+})
+
+// отправка
+app.post('/users', (req, res) => {
+  const user = {
+    id: uniqueId('user_'),
+    username: req.body.name.trim(),
+    email: req.body.email.toLowerCase(),
+    password: req.body.password,
+  }
+
+  state.users.push(user)
+
+  res.redirect('/users')
+})
+
+// отображаем КУРСЫ и форму поиска
+
+const normalized = (str) => str.trim().toLowerCase()
+
 app.get('/courses', (req, res) => {
   const { term } = req.query
+  const normalizedTerm = normalized(term || '');
+    
+  const filteredCourses = state.courses.filter(c => 
+    normalized(c.title).includes(normalizedTerm)
+    || normalized(c.description).includes(normalizedTerm)
+  )
+  const data = {term, courses: filteredCourses}
+  res.view('src/views/courses/index', data)
+})
 
-  if (term) {
-    const normalized = (str) => str.trim().toLowerCase()
-    const filteredCourses = state.courses.filter(c => 
-      normalized(c.title).includes(normalized(term))
-      || normalized(c.description).includes(normalized(term))
-    )
-    const data = {term, courses: filteredCourses}
-    res.view('src/views/courses/search', data)
-  } else {
-    const data = {term, courses: state.courses}
-    res.view('src/views/courses/search', data)
+// добавляем новый КУРС
+// форма
+app.get('/courses/new', (_req, res)=> {
+  res.view('src/views/courses/new')
+})
+
+// отправка
+// app.post('/courses')
+app.post('/courses', (req, res) => {
+  const course = {
+    id: uniqueId('course_'),
+    title: req.body.title,
+    description: req.body.description
   }
+
+  state.courses.push(course)
+  res.redirect('/courses')
 })
 
 // без отображения - тренировка - первые шаги
 app.get('/users/:id/posts/:postId', (req, res) => {
   res.send(`User Id: ${req.params.id}; Post Id: ${req.params.postId}`)
-})
-
-app.post('/users', (req, res) => {
-  res.send('POST /users')
 })
 
 // Приветствие по имени

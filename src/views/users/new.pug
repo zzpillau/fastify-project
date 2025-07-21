@@ -1,0 +1,18 @@
+extends ../layouts/page.pug
+
+block content
+  .container.mt-4
+    form(action = '/users', method = 'post')
+      div.form-group.mt-3
+        label Имя:
+        input.form-control(type = 'text', name = 'name')
+      div.form-group.mt-3
+        label Email:
+        input.form-control(type = 'email', name = 'email', required = true)
+      div.form-group.mt-3
+        label Пароль:
+        input.form-control(type = 'password', name = 'password', required = true)
+      div.form-group.mt-3
+        label Подтверждение пароля:
+        input.form-control(type = 'password', name = 'passwordConfirmation', required = true)
+      input.btn.btn-primary.mt-4(type = 'submit', value = 'Зарегистрироваться')

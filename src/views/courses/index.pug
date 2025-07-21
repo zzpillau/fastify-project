@@ -1,0 +1,15 @@
+extends ../layouts/page.pug
+
+block content
+  .container.mt-4
+    a.btn.btn-primary.mb-3(href='/courses/new') Добавить курс
+    form(role = 'form' method = 'GET' action = '/courses')
+      .form-floating.d-flex.mb-3
+        input#search-form.form-control.me-2(type = 'search'  name = 'term' value = term placeholder='Поиск курса...')
+        label.floating(for="search-form") Поиск курса...
+        input.btn.btn-primary(type = 'submit' value = 'ПОГНАЛЕ!')
+    each c in courses
+      .card.mb-3
+        .card-body
+          h5.text-primary= c.title
+          p= c.description

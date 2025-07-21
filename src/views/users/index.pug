@@ -1,6 +1,9 @@
 extends ../layouts/page.pug
 
 block content
+  .container.mt-4
+    a.btn.btn-primary.mb-3(href='/users/new') Зарегистрироваться
+
     if users.length === 0
       p No one here
     else
