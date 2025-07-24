@@ -2,7 +2,7 @@ extends ../layouts/page.pug
 
 block content
   .container-4
-    form(action='/courses', method='post')
+    form(action=routes.coursesPath(), method='post')
       div.form-group.mt-3
         label Название:
         input.form-control(type = 'text', name = 'title')

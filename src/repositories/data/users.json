@@ -29,5 +29,29 @@
     "username": "Зайка Репозиторная",
     "email": "zz@zz.com",
     "password": "11111"
+  },
+  {
+    "id": "user_1",
+    "username": "ss",
+    "email": "ss@ss.com",
+    "password": "222222"
+  },
+  {
+    "id": "user_2",
+    "username": "tanya",
+    "email": "tanya@g.com",
+    "password": "111111"
+  },
+  {
+    "id": "2a843837-ed2e-4b61-8448-d591e97688b4",
+    "username": "ккк",
+    "email": "rrr@rr.com",
+    "password": "11111"
+  },
+  {
+    "id": "4f56a417-e417-408d-bbc4-d8bd89da7a7c",
+    "username": "jnmnmnb nm",
+    "email": "vv@mnn.com",
+    "password": "11111"
   }
 ]

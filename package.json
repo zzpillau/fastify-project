@@ -16,7 +16,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon bin/index.js"
   },
   "dependencies": {
     "@fastify/formbody": "^8.0.2",
@@ -26,7 +26,9 @@
     "fastify": "^5.4.0",
     "lodash.uniqueid": "^4.0.1",
     "pug": "^3.0.3",
-    "sanitize-html": "^2.17.0"
+    "sanitize-html": "^2.17.0",
+    "uuid": "^11.1.0",
+    "yup": "^1.6.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.10",

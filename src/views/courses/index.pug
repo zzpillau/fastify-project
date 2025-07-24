@@ -2,7 +2,7 @@ extends ../layouts/page.pug
 
 block content
   .container.mt-4
-    a.btn.btn-primary.mb-3(href='/courses/new') Добавить курс
+    a.btn.btn-primary.mb-3(href=routes.newCoursePath()) Добавить курс
     form(role = 'form' method = 'GET' action = '/courses')
       .form-floating.d-flex.mb-3
         input#search-form.form-control.me-2(type = 'search'  name = 'term' value = term placeholder='Поиск курса...')

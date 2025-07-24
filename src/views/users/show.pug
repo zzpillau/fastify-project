@@ -1,8 +1,8 @@
 extends ../layouts/page.pug
 
 block content
-  table
-    tbody
-      tr
-        td= username
-        td= email
+  h1.header= 'Пользователь'
+  p Имя пользователя: #{username}
+  p Емейл пользователя: #{email}
+
+  a.btn.btn-primary.mb-3(href=`/users/${id}/edit`) Изменить
